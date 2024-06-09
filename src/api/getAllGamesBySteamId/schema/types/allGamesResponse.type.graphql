@@ -1,0 +1,4 @@
+type AllGamesResponse {
+    gameCount: Int
+    games: [SteamGame]
+}

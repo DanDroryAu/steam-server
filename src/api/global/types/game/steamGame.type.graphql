@@ -1,0 +1,9 @@
+type SteamGame {
+    appId: ID!
+    name: String!
+    playtimeLastTwoWeeks: Int!
+    playtimeTotal: Int!
+    logoUrl: String!
+    iconUrl: String!
+    hasCommunityVisibleStats: Boolean!
+}

@@ -1,0 +1,51 @@
+type Mutation {
+  _: Boolean
+}
+
+type Query {
+  _: Boolean
+  getAllGamesBySteamId(args: GetAllGamesBySteamIdInput): AllGamesResponse
+  getGameTotals(args: GetGameTotalsInput): [Int]
+}
+
+type Subscription {
+  _: Boolean
+}
+
+input GetAllGamesBySteamIdInput {
+  steamId: Int!
+}
+
+type AllGamesResponse {
+  gameCount: Int
+  games: [SteamGame]
+}
+
+input GetGameTotalsInput {
+  steamId: Int!
+  gameId: ID!
+  lol: String
+}
+
+type SteamGame {
+  appId: ID!
+  name: String!
+  playtimeLastTwoWeeks: Int!
+  playtimeTotal: Int!
+  logoUrl: String!
+  iconUrl: String!
+  hasCommunityVisibleStats: Boolean!
+}
+
+type SteamUser {
+  id: ID!
+  steamId: String!
+  username: String!
+  avatar: String!
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}

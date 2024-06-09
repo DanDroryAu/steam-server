@@ -1,0 +1,25 @@
+{
+  "name": "steam-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "compile:schema": "tsx scripts/compile-graphql-schema.ts",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@apollo/server": "^4.10.4",
+    "graphql": "^16.8.1"
+  },
+  "devDependencies": {
+    "@graphql-tools/graphql-file-loader": "^8.0.1",
+    "@graphql-tools/load": "^8.0.2",
+    "@graphql-tools/load-files": "^7.0.0",
+    "@types/node": "^20.14.2",
+    "tsx": "^4.14.0",
+    "typescript": "^5.4.5"
+  }
+}

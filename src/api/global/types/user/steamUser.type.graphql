@@ -1,0 +1,6 @@
+type SteamUser {
+  id: ID!
+  steamId: String!
+  username: String!
+  avatar: String!
+}
