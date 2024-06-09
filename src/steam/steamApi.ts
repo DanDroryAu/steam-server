@@ -13,5 +13,15 @@ export const steamApiService = {
             // TODO: nicer error handling.
             console.error(error);
         }
-    }
+    },
+    async GetPlayerSummaries({ steamIds }: { steamIds: string[] }) {
+        try {
+            const res = await fetch(`${this.baseUrl}ISteamUser/GetPlayerSummaries/v0002/?key=${this.API_KEY}&steamids=${steamIds.join(',')}`);
+            const { response} = await res.json() as { response: unknown }
+            return response;
+        } catch (error) {
+            // TODO: nicer error handling.
+            console.error(error);
+        }
+    },
 }
