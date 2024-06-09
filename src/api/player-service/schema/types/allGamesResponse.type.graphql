@@ -1,4 +1,6 @@
 type AllGamesResponse {
     gameCount: Int
+    totalPlaytime: Int
+    totalPlaytimeTwoWeeks: Int
     games: [SteamGame]
 }

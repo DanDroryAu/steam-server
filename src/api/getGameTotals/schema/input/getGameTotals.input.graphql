@@ -1,5 +1,0 @@
-input GetGameTotalsInput {
-    steamId: Int!
-    gameId: ID!
-    lol: String
-}

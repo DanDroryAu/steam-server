@@ -1,7 +1,7 @@
-import { queryResolvers as getGameTotalsResolver } from '@/api/getGameTotals/resolver';
-import { queryResolvers as getAllGamesBySteamIdResolver } from '@/api/getAllGamesBySteamId/resolver';
+import { queryResolvers as playerServiceResolvers } from '@/api/player-service/resolver';
+import { queryResolvers as steamUserResolvers } from "@/api/steam-user/resolver";
 
 export const queryResolvers = {
-    ...getGameTotalsResolver,
-    ...getAllGamesBySteamIdResolver,
+    ...playerServiceResolvers,
+    ...steamUserResolvers
 }

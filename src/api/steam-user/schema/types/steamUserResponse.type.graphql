@@ -1,0 +1,10 @@
+type SteamUserResponse {
+    personaName: String
+    avatarUrl: String
+    profileUrl: String
+    personaState: Int
+    realName: String
+    primaryClanId: String
+    timeCreated: Int
+    locCountryCode: String
+}
