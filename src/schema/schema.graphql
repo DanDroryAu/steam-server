@@ -5,7 +5,6 @@ type Mutation {
 type Query {
   _: Boolean
   getAllGamesBySteamId(args: GetAllGamesBySteamIdInput): AllGamesResponse
-  getGameTotals(args: GetGameTotalsInput): [Int]
 }
 
 type Subscription {
@@ -13,28 +12,24 @@ type Subscription {
 }
 
 input GetAllGamesBySteamIdInput {
-  steamId: Int!
+  steamId: String!
 }
 
 type AllGamesResponse {
   gameCount: Int
+  totalPlaytime: Int
+  totalPlaytimeTwoWeeks: Int
   games: [SteamGame]
-}
-
-input GetGameTotalsInput {
-  steamId: Int!
-  gameId: ID!
-  lol: String
 }
 
 type SteamGame {
   appId: ID!
-  name: String!
-  playtimeLastTwoWeeks: Int!
-  playtimeTotal: Int!
-  logoUrl: String!
-  iconUrl: String!
-  hasCommunityVisibleStats: Boolean!
+  name: String
+  playtimeLastTwoWeeks: Int
+  playtimeTotal: Int
+  logoUrl: String
+  iconUrl: String
+  hasCommunityVisibleStats: Boolean
 }
 
 type SteamUser {

@@ -1,3 +1,0 @@
-extend type Query {
-    getGameTotals(args: GetGameTotalsInput): [Int]
-}

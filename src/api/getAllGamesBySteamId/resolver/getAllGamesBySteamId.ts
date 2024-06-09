@@ -1,17 +1,31 @@
 import { type GetAllGamesBySteamIdInput } from "@/api/getAllGamesBySteamId/schema/input/getAllGamesBySteamId.type";
+import { steamApiService } from "@/steam/steamApi";
 
+export const getAllGamesBySteamId = async (_, { args }: { args: GetAllGamesBySteamIdInput }) => {
+    const { steamId } = args;
+    const { games, game_count } = await steamApiService.GetOwnedGames({ steamId, options: {} });
 
-export const getAllGamesBySteamId = async (parent, args: GetAllGamesBySteamIdInput, context, info) => {
-    console.log('getAllGamesBySteamId', parent, args, context, info);
-
-    const url = `https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${process.env.STEAM_API_KEY}&steamid=${args.steamId}&format=json`;
-
-    const res = await fetch(url);
-    const data = await res.json();
-    console.log('data', data);
+    const { totalPlaytime, totalPlaytimeTwoWeeks, allGames } = games.reduce((acc, game) => ({
+            totalPlaytime: acc.totalPlaytime + game.playtime_forever,
+            totalPlaytimeTwoWeeks: acc.totalPlaytimeTwoWeeks + (game.playtime_2weeks ?? 0),
+            allGames: acc.allGames.concat({
+                appId: game.appid,
+                name: game.name,
+                playtimeTotal: game.playtime_forever,
+                playtimeTwoWeeks: game.playtime_2weeks,
+                iconUrl: game.img_icon_url,
+                logoUrl: game.img_logo_url,
+            }),
+        }), {
+            totalPlaytime: 0,
+            totalPlaytimeTwoWeeks: 0,
+            allGames: [],
+    });
 
     return {
-        gameCount: data.response.game_count,
-        games: data.response.games
+        gameCount: game_count,
+        totalPlaytime,
+        totalPlaytimeTwoWeeks,
+        games: allGames.sort((a, b) => b.playtimeTotal - a.playtimeTotal),
     }
 }
