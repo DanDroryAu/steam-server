@@ -2,3 +2,5 @@ node_modules
 .idea
 .envrc
 .DS_store
+
+dist
