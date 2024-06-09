@@ -17,7 +17,7 @@ export const steamApiService = {
     async GetPlayerSummaries({ steamIds }: { steamIds: string[] }) {
         try {
             const res = await fetch(`${this.baseUrl}ISteamUser/GetPlayerSummaries/v0002/?key=${this.API_KEY}&steamids=${steamIds.join(',')}`);
-            const { response} = await res.json() as { response: unknown }
+            const { response} = await res.json() as { response: { players: any[] } }
             return response;
         } catch (error) {
             // TODO: nicer error handling.
