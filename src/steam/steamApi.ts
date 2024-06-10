@@ -12,6 +12,7 @@ export const steamApiService = {
         } catch (error) {
             // TODO: nicer error handling.
             console.error(error);
+            throw new Error('error trying to get owned games');
         }
     },
     async GetPlayerSummaries({ steamIds }: { steamIds: string[] }) {
@@ -22,6 +23,7 @@ export const steamApiService = {
         } catch (error) {
             // TODO: nicer error handling.
             console.error(error);
+            throw new Error('error trying to get player summaries');
         }
     },
 }

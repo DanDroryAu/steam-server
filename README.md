@@ -85,18 +85,21 @@ the app is built using `nodejs`.
 
 I've decided to use `graphql` over `rest`. I like graphql's flexibility over rests way of accessing data. It's also easier to use in the frontend because you can query exactly what you need.
 
-I've decided to use `jest` for tests here. I don't have vite installed for vitest but it has an almost similar interface for testing so makes it easy to learn when comparing it to the FE app.
+I've decided to use `vitest` for tests here. Similar reasons as the fe application. Faster test runner and it uses the same api for ease of development.
 
 I've also decided to use `rollup` for the bundling and serving. I've had issues with a pure tsc compilation and thought it would be easier to let rollup bundle it all. Its much smaller than webpack and its what vite uses so it keeps both applications in sync.
 
 ### Libraries
 I've decided to use `apollo server` for the backend because I wanted to use graphql and it comes with an express app out of the box.
 
+I've decided to use `msw` for mocking the API calls to the steam server in the tests. It allows me to intercept the http requests without having to mock the `fetch` function. this maintains normal fetch behaviour and simulates a backend response.
 
 ### Extra feature
 As an extra feature I decided to fetch the userData from steam and serve it back. I'm displaying some extra info because it is nice to see who you are actually looking at. I've also used the created time to calculate how much time you've spent gaming (on steam) during the time you have been active. This is expressed in a percentage. I personally do not like my own percentage :D. I need to spend more time with my family by the looks of it.
 
 ### Improvements
+Again I would write more tests, I;ve only written one suite for one section of the app. I would add tests around the steamService, schema generator, and the apollo server that I've created. For sake of time I've left those out.
+
 The error handling in the app is non-existent. I've decided to go for happy paths only. If I would have added error handling I would opt for a service like sentry or data-dog to capture all unhandled exceptions. I would also add error codes to known problems so that we can debug it and send back friendly messages to the users that can potentially unblock them.
 
 I would also add a caching layer to the steam api. I'm currently fetching the data every time the user hits the endpoint. This is not ideal because the steam api has a rate limit. I would add a caching layer to the app so that we can cache the data for a certain amount of time. This would also speed up the app because we would not have to wait for the steam api to respond. Apollo is luckily cached in the frontend but if multiple sources are requesting the same endpoint we would still hit the steam api multiple times.
