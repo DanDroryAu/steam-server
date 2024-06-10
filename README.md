@@ -102,6 +102,8 @@ Again I would write more tests, I;ve only written one suite for one section of t
 
 The error handling in the app is non-existent. I've decided to go for happy paths only. If I would have added error handling I would opt for a service like sentry or data-dog to capture all unhandled exceptions. I would also add error codes to known problems so that we can debug it and send back friendly messages to the users that can potentially unblock them.
 
+I would also have liked to add more ESLINT rules. For sake of time I've decided against setting up my "perfect" eslint config. I would add prettier as well as look at some other rules that I would want to enable.
+
 I would also add a caching layer to the steam api. I'm currently fetching the data every time the user hits the endpoint. This is not ideal because the steam api has a rate limit. I would add a caching layer to the app so that we can cache the data for a certain amount of time. This would also speed up the app because we would not have to wait for the steam api to respond. Apollo is luckily cached in the frontend but if multiple sources are requesting the same endpoint we would still hit the steam api multiple times.
 
 lastly, the deployment of the app is simple via Heroku. I would much rather deploy it to AWS with github actions being able to do multiple checks but for the purpose of this test I think heroku will suffice (its cheap - read, free -  and easy to set up.)
